@@ -5,10 +5,15 @@ public class EnemyScript : MonoBehaviour
     public float speed = 3f; // Speed of the enemy's movement
     public float stoppingDistance = 1.5f; // Distance at which the enemy stops following the player
     public Transform player; // Reference to the player's position
+    public float chasingDistance;
 
     private void Update()
     {
-        if (player != null)
+        float distance = Vector2.Distance(transform.position, player.position);
+
+        if (distance > chasingDistance) { return; }
+
+        if (player != null && distance > stoppingDistance)
         {
             // Get the direction vector from the enemy to the player
             Vector3 direction = player.position - transform.position;
@@ -38,6 +43,8 @@ public class EnemyScript : MonoBehaviour
                     transform.position += Vector3.down * speed * Time.deltaTime;
                 }
             }
+
+
 
             // If the enemy is within stopping distance, stop moving
             if (direction.magnitude <= stoppingDistance)
