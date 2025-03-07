@@ -1,10 +1,10 @@
 using UnityEngine;
-
+using UnityEngine.Rendering.Universal;
 public class RoomTrigger : MonoBehaviour
 {
     public AudioClip suspenseSound; // Arrasta aqui tu clip de sonido
     private AudioSource audioSource;
-    public Light[] lights2D; // referencia a la luz de la antorcha
+    public UnityEngine.Rendering.Universal.Light2D[] lights2D; // referencia a la luz de la antorcha
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -13,7 +13,7 @@ public class RoomTrigger : MonoBehaviour
         audioSource.clip = suspenseSound;
 
         // Asignar luces manualmente (ejemplo)
-        lights2D = new Light[7];
+        /*lights2D = new Light[7];
         lights2D[0] = GameObject.Find("TorchLight1").GetComponent<Light>();
         lights2D[1] = GameObject.Find("TorchLight2").GetComponent<Light>();
         lights2D[2] = GameObject.Find("TorchLight3").GetComponent<Light>();
@@ -21,10 +21,10 @@ public class RoomTrigger : MonoBehaviour
         lights2D[4] = GameObject.Find("TorchLight5").GetComponent<Light>();
         lights2D[5] = GameObject.Find("TorchLight6").GetComponent<Light>();
         lights2D[6] = GameObject.Find("TorchLight7").GetComponent<Light>();
-
+        */
 
         // Asegurase que todas las luces esten apagadas al principio 
-        foreach (Light light in lights2D)
+        foreach (Light2D light in lights2D)
         {
             light.enabled = false;
         }
@@ -48,7 +48,7 @@ public class RoomTrigger : MonoBehaviour
 
     void ActivateLights2D()
     {
-        foreach (Light light in lights2D)
+        foreach (Light2D light in lights2D)
         {
             light.enabled = true; // activa la luz de la antorcha
         }
@@ -56,15 +56,15 @@ public class RoomTrigger : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
-        if (other.CompareTag("Player"))
+        /*if (other.CompareTag("Player"))
         {
             DesactivateLights2D();
-        }
+        }*/
     }
 
     void DesactivateLights2D()
     {
-        foreach (Light light in lights2D)
+        foreach (Light2D light in lights2D)
         {
             light.enabled = false; // Desactiva la luz de las anotorchas
         }
