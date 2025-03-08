@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Enemy : MonoBehaviour, IDamageable, IEnemyMoveable
+public class Enemy : MonoBehaviour, IDamageable, IEnemyMoveable, ITriggerCheckable
 {
     [field: SerializeField] public float MaxHealth { get; set; } = 1f;
 
