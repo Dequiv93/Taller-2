@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Enemy : MonoBehaviour, IDamageable, IEnemyMoveable
+public class Enemy : MonoBehaviour, IDamageable, IEnemyMoveable, ITriggerCheckable
 {
     [field: SerializeField] public float MaxHealth { get; set; } = 1f;
 
@@ -11,6 +11,10 @@ public class Enemy : MonoBehaviour, IDamageable, IEnemyMoveable
     public Rigidbody2D RB { get; set; }
 
     public bool IsFacingRight { get; set; } = true;
+
+    public bool IsAggroed { get; set; }
+
+    public bool IsWithinStrikingDistance { get; set; }
 
     #region State Machine Variables
 
@@ -107,11 +111,30 @@ public class Enemy : MonoBehaviour, IDamageable, IEnemyMoveable
 
     #endregion
 
+    #region Distance Checks
+
+    public void SetAggroStatus(bool isAggroed)
+    {
+        IsAggroed = IsAggroed;
+    }
+
+    public void SetStrikingDistanceBool(bool isWithinStrikingDistance)
+    {
+        IsWithinStrikingDistance = isWithinStrikingDistance;
+    }
+
+    #endregion
+
     #region Animation Triggers
 
     private void AnimationTriggerEvent(AnimationTriggerType triggerType)
     {
         StateMachine.CurrentEnemyState.AnimationTriggerEvent(triggerType);
+    }
+
+    public void IsWithinStrikingDistanceBool(bool IsWithinStrikingDistance)
+    {
+        throw new System.NotImplementedException();
     }
 
     public enum AnimationTriggerType
