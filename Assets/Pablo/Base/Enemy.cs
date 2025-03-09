@@ -12,6 +12,10 @@ public class Enemy : MonoBehaviour, IDamageable, IEnemyMoveable, ITriggerCheckab
 
     public bool IsFacingRight { get; set; } = true;
 
+    public bool IsAggroed { get; set; }
+
+    public bool IsWithinStrikingDistance { get; set; }
+
     #region State Machine Variables
 
     public EnemyStateMachine StateMachine { get; set; }
@@ -107,11 +111,30 @@ public class Enemy : MonoBehaviour, IDamageable, IEnemyMoveable, ITriggerCheckab
 
     #endregion
 
+    #region Distance Checks
+
+    public void SetAggroStatus(bool isAggroed)
+    {
+        IsAggroed = IsAggroed;
+    }
+
+    public void SetStrikingDistanceBool(bool isWithinStrikingDistance)
+    {
+        IsWithinStrikingDistance = isWithinStrikingDistance;
+    }
+
+    #endregion
+
     #region Animation Triggers
 
     private void AnimationTriggerEvent(AnimationTriggerType triggerType)
     {
         StateMachine.CurrentEnemyState.AnimationTriggerEvent(triggerType);
+    }
+
+    public void IsWithinStrikingDistanceBool(bool IsWithinStrikingDistance)
+    {
+        throw new System.NotImplementedException();
     }
 
     public enum AnimationTriggerType
