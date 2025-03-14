@@ -18,11 +18,13 @@ public class EnemyChaseState : EnemyState
     public override void EnterState()
     {
         base.EnterState();
+        Debug.Log("Entered Chase State!");
     }
 
     public override void ExitState()
     {
         base.ExitState();
+        Debug.Log("Exiting Chase State.");
     }
 
     public override void FrameUpdate()
@@ -32,10 +34,12 @@ public class EnemyChaseState : EnemyState
         Vector2 moveDirection = (_playerTransform.position - enemy.transform.position).normalized;
 
         enemy.MoveEnemy(moveDirection * _movementSpeed);
+        Debug.Log("Chasing player. Move direction: " + moveDirection);
 
         if (enemy.IsWithinStrikingDistance)
         {
-            //emy.StateMachine.ChangeState(enemy.AttackState);
+            Debug.Log("Enemy is within striking distance! Switching to Attack State.");
+            enemy.StateMachine.ChangeState(enemy.AttackState);
         }
     }
 

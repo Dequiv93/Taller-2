@@ -5,35 +5,21 @@ using UnityEngine;
 public class Enemy : MonoBehaviour, IDamageable, IEnemyMoveable, ITriggerCheckable
 {
     [field: SerializeField] public float MaxHealth { get; set; } = 1f;
-
     public float CurrentHealth { get; set; }
-
     public Rigidbody2D RB { get; set; }
-
     public bool IsFacingRight { get; set; } = true;
-
     public bool IsAggroed { get; set; }
-
     public bool IsWithinStrikingDistance { get; set; }
 
-    #region State Machine Variables
-
+    // State Machine Variables
     public EnemyStateMachine StateMachine { get; set; }
-
     public EnemyIdleState IdleState { get; set; }
-
     public EnemyChaseState ChaseState { get; set; }
-
     public EnemyAttackState AttackState { get; set; }
 
-    #endregion
-
-    #region Idle Variables
-
+    // Idle Variables
     public float RandomMovementRange = 5f;
     public float RandomMovementSpeed = 1f;
-
-    #endregion
 
     private void Awake()
     {
@@ -44,13 +30,10 @@ public class Enemy : MonoBehaviour, IDamageable, IEnemyMoveable, ITriggerCheckab
         AttackState = new EnemyAttackState(this, StateMachine);
     }
 
-
     private void Start()
     {
         CurrentHealth = MaxHealth;
-
         RB = GetComponent<Rigidbody2D>();
-
         StateMachine.Initialize(IdleState);
     }
 
@@ -64,8 +47,7 @@ public class Enemy : MonoBehaviour, IDamageable, IEnemyMoveable, ITriggerCheckab
         StateMachine.CurrentEnemyState.PhysicsUpdate();
     }
 
-    #region Health / Die Functions
-
+    // Health / Die Functions
     public void Damage(float damageAmount)
     {
         CurrentHealth -= damageAmount;
@@ -79,17 +61,14 @@ public class Enemy : MonoBehaviour, IDamageable, IEnemyMoveable, ITriggerCheckab
 
     public void Die()
     {
-
+        // Add death behavior here
     }
 
-    #endregion
-
-    #region Movement Functions
-
+    // Movement Functions
     public void MoveEnemy(Vector2 velocity)
     {
-        RB.linearVelocity = velocity;
-        CheckForLeftOrRightFacing(velocity);
+        RB.linearVelocity = velocity; // Changed from linearVelocity to velocity
+        Debug.Log("Enemy moving with velocity: " + velocity);
     }
 
     public void CheckForLeftOrRightFacing(Vector2 velocity)
@@ -100,8 +79,7 @@ public class Enemy : MonoBehaviour, IDamageable, IEnemyMoveable, ITriggerCheckab
             transform.rotation = Quaternion.Euler(rotator);
             IsFacingRight = !IsFacingRight;
         }
-
-        else if (IsFacingRight && velocity.x > 0f)
+        else if (!IsFacingRight && velocity.x > 0f)
         {
             Vector3 rotator = new Vector3(transform.rotation.x, 0f, transform.rotation.x);
             transform.rotation = Quaternion.Euler(rotator);
@@ -109,13 +87,10 @@ public class Enemy : MonoBehaviour, IDamageable, IEnemyMoveable, ITriggerCheckab
         }
     }
 
-    #endregion
-
-    #region Distance Checks
-
+    // Distance Checks
     public void SetAggroStatus(bool isAggroed)
     {
-        IsAggroed = IsAggroed;
+        IsAggroed = isAggroed;
     }
 
     public void SetStrikingDistanceBool(bool isWithinStrikingDistance)
@@ -123,16 +98,13 @@ public class Enemy : MonoBehaviour, IDamageable, IEnemyMoveable, ITriggerCheckab
         IsWithinStrikingDistance = isWithinStrikingDistance;
     }
 
-    #endregion
-
-    #region Animation Triggers
-
+    // Animation Triggers
     private void AnimationTriggerEvent(AnimationTriggerType triggerType)
     {
         StateMachine.CurrentEnemyState.AnimationTriggerEvent(triggerType);
     }
 
-    public void IsWithinStrikingDistanceBool(bool IsWithinStrikingDistance)
+    public void IsWithinStrikingDistanceBool(bool isWithinStrikingDistance)
     {
         throw new System.NotImplementedException();
     }
@@ -142,6 +114,4 @@ public class Enemy : MonoBehaviour, IDamageable, IEnemyMoveable, ITriggerCheckab
         enemyDamaged,
         PlayFootstepSound
     }
-
-    #endregion
 }
