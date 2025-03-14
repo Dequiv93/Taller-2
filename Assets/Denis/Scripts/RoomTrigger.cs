@@ -1,3 +1,4 @@
+using TMPro;
 using UnityEngine;
 using UnityEngine.Rendering.Universal;
 public class RoomTrigger : MonoBehaviour
@@ -6,6 +7,8 @@ public class RoomTrigger : MonoBehaviour
     private AudioSource audioSource;
     public UnityEngine.Rendering.Universal.Light2D[] lights2D; // referencia a la luz de la antorcha
     private bool hasActivated = false;
+
+    public TMP_Text bossMessageText;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -29,6 +32,9 @@ public class RoomTrigger : MonoBehaviour
         {
             light.enabled = false;
         }
+
+        // Asegúrate de que el mensaje esté oculto al inicio
+        bossMessageText.gameObject.SetActive(false);
     }
 
     private void OnTriggerEnter2D(Collider2D other)
@@ -37,6 +43,7 @@ public class RoomTrigger : MonoBehaviour
         {
             PlaySuspenseSound();
             ActivateLights2D();
+            ShowBossMessage(); // Mostrar el mensaje del boss
             // Aqui se agrega la logica para avisar al minotauro
             hasActivated = true;
         }
@@ -54,6 +61,18 @@ public class RoomTrigger : MonoBehaviour
         {
             light.enabled = true; // activa la luz de la antorcha
         }
+    }
+
+    void ShowBossMessage()
+    {
+        bossMessageText.gameObject.SetActive(true); // Activa el texto
+        bossMessageText.text = "El boss se aproxima"; // Cambia el texto
+        Invoke("HideBossMessage", 3f); // Oculta el mensaje después de 3 segundos
+    }
+
+    void HideBossMessage()
+    {
+        bossMessageText.gameObject.SetActive(false); // Desactiva el texto
     }
 
     private void OnTriggerExit(Collider other)
