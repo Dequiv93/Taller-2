@@ -5,6 +5,7 @@ public class RoomTrigger : MonoBehaviour
     public AudioClip suspenseSound; // Arrasta aqui tu clip de sonido
     private AudioSource audioSource;
     public UnityEngine.Rendering.Universal.Light2D[] lights2D; // referencia a la luz de la antorcha
+    private bool hasActivated = false;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -32,11 +33,12 @@ public class RoomTrigger : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.CompareTag("Player")) // Asegurarse de que el personaje tenga la etiqueta Player
+        if (other.CompareTag("Player") && !hasActivated)// Asegurarse de que el personaje tenga la etiqueta Player
         {
             PlaySuspenseSound();
             ActivateLights2D();
             // Aqui se agrega la logica para avisar al minotauro
+            hasActivated = true;
         }
     }
 
