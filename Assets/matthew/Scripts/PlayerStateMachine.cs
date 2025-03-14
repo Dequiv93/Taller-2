@@ -4,15 +4,19 @@ public class PlayerStateMachine : MonoBehaviour
 {
     public PlayerState IdleState { get; private set; } // reference to the idle state
     public PlayerState WalkingState { get; private set; }// reference to the walking state
+    public PlayerState AttackState { get; private set; }// reference to the attack state
     private PlayerState currentState; 
     private PlayerMovement player;
 
     void Awake()
     {
-        // Initialize the states
+        
         player = GetComponent<PlayerMovement>();
+
+        // Initialize the states
         IdleState = new IdleState(this, player);
         WalkingState = new WalkingState(this, player);
+        AttackState = new AttackState(this, player);
     }
 
     void Start()
