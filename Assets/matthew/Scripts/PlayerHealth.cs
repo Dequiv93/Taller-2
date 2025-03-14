@@ -4,6 +4,7 @@ public class PlayerHealth : MonoBehaviour
 {
     [SerializeField] int playerHp;
     public int playermaxHp;
+    public bool reciveDamage = true;
 
 
 
@@ -12,15 +13,17 @@ public class PlayerHealth : MonoBehaviour
         playerHp = playermaxHp;
     }
 
+   
 
     public void LoseHp(int amount)
     {
 
         playerHp -= amount;
-        if(playerHp <= 0)
+        if (playerHp <= 0)
         {
             Destroy(gameObject);
         }
+       
     }
 
 
