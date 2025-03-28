@@ -3,14 +3,16 @@ using UnityEngine;
 public class EnemyDamage : MonoBehaviour
 {
     public PlayerHealth playerHealth;
-    public int enemyDamage = 1; 
+    public int enemyDamage = 1;
 
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if(collision.gameObject.tag == "Player")
+       
+        if (collision.collider.CompareTag("Shield"))
         {
-            playerHealth.LoseHp(enemyDamage);
+            return;
         }
+        playerHealth.LoseHp(enemyDamage);
     }
 }

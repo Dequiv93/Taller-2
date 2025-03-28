@@ -8,15 +8,12 @@ public class PlayerMovement : MonoBehaviour
     private Vector2 moveInput;
     private PlayerStateMachine stateMachine;
 
-
-
-    public float MoveSpeed => moveSpeed; //Returns move speed (read-only)
-    public Vector2 MoveInput => moveInput; //Returns the current movement input (read-only)
+    public float MoveSpeed => moveSpeed;
+    public Vector2 MoveInput => moveInput;
 
     [SerializeField] private LayerMask enemyLayers;
-    [SerializeField] private Transform attackPoint; //Reference to the attack point
-    [SerializeField] private float attackRange = 0.5f; //Attack range
-    [SerializeField] private LayerMask enemyLayer; //Layer mask for the enemy layer
+    [SerializeField] private Transform attackPoint; // Reference to the attack point
+    [SerializeField] private float attackRange = 0.5f; // Attack range
 
     void Awake()
     {
@@ -26,21 +23,20 @@ public class PlayerMovement : MonoBehaviour
 
     void Update()
     {
-        //apply movement based on input and speed
         rb.linearVelocity = moveInput * moveSpeed;
     }
 
-    // Called automatically by Unity's Input System when movement input changes
     public void Move(InputAction.CallbackContext context)
     {
-        moveInput = context.ReadValue<Vector2>(); //Read and store movement input
+        moveInput = context.ReadValue<Vector2>();
     }
 
-    // Allows other scripts (like state machine) to modify the player's velocity
     public void SetVelocity(Vector2 velocity)
     {
-        rb.linearVelocity = velocity; //Directly set the Rigidbody velocity
+        rb.linearVelocity = velocity;
     }
+
+    // Attack input from Unity Input System
     public void Attack(InputAction.CallbackContext context)
     {
         if (context.started)
@@ -48,25 +44,25 @@ public class PlayerMovement : MonoBehaviour
             stateMachine.ChangeState(stateMachine.AttackState);
         }
     }
+
     public void TriggerAttack()
     {
         // Detect enemies in attack range
         Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(attackPoint.position, attackRange, enemyLayers);
 
-        // Loop through detected enemies
         foreach (Collider2D enemyCollider in hitEnemies)
         {
-            // Commented out to avoid errors since the Enemy class doesn't exist yet
-            // Enemy enemy = enemyCollider.GetComponent<Enemy>(); // Get the Enemy script
-            // if (enemy != null)
-            // {
-            //     enemy.TakeDamage(10); // Call TakeDamage() function
-            // }
+            // Get the Enemy script
+            EnemyScript enemy = enemyCollider.GetComponent<EnemyScript>();
+            if (enemy != null)
+            {
+                enemy.TakeDamage(1); // Deal damage
+            }
 
-            // Just log for now to confirm detection
             Debug.Log("Hit enemy: " + enemyCollider.name);
         }
     }
+
     private void OnDrawGizmosSelected()
     {
         if (attackPoint != null)
@@ -75,5 +71,4 @@ public class PlayerMovement : MonoBehaviour
             Gizmos.DrawWireSphere(attackPoint.position, attackRange);
         }
     }
-    
 }

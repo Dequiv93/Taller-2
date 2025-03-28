@@ -145,6 +145,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 5
+  enemyLayers:
+    serializedVersion: 2
+    m_Bits: 128
+  attackPoint: {fileID: 1328859657819739625}
+  attackRange: 1
 --- !u!114 &5879739003236806326
 MonoBehaviour:
   m_ObjectHideFlags: 0
