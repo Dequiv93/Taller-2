@@ -12,8 +12,9 @@ public class PlayerMovement : MonoBehaviour
     public Vector2 MoveInput => moveInput;
 
     [SerializeField] private LayerMask enemyLayers;
-    [SerializeField] private Transform attackPoint; // Reference to the attack point
-    [SerializeField] private float attackRange = 0.5f; // Attack range
+    [SerializeField] private Transform attackPoint;
+    [SerializeField] private float attackRange = 0.5f;
+    private Vector2 lastMoveDirection = Vector2.right; // �ltima direcci�n de ataque
 
     void Awake()
     {
@@ -29,6 +30,11 @@ public class PlayerMovement : MonoBehaviour
     public void Move(InputAction.CallbackContext context)
     {
         moveInput = context.ReadValue<Vector2>();
+
+        if (moveInput != Vector2.zero)
+        {
+            lastMoveDirection = moveInput.normalized; // Guarda la �ltima direcci�n de movimiento
+        }
     }
 
     public void SetVelocity(Vector2 velocity)
@@ -36,7 +42,6 @@ public class PlayerMovement : MonoBehaviour
         rb.linearVelocity = velocity;
     }
 
-    // Attack input from Unity Input System
     public void Attack(InputAction.CallbackContext context)
     {
         if (context.started)
@@ -47,28 +52,29 @@ public class PlayerMovement : MonoBehaviour
 
     public void TriggerAttack()
     {
-        // Detect enemies in attack range
-        Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(attackPoint.position, attackRange, enemyLayers);
+        Vector2 attackPosition = (Vector2)attackPoint.position + lastMoveDirection * attackRange * 0.5f;
+
+        Collider2D[] hitEnemies = Physics2D.OverlapBoxAll(attackPosition, new Vector2(attackRange, attackRange * 0.5f), 0f, enemyLayers);
 
         foreach (Collider2D enemyCollider in hitEnemies)
         {
-            // Get the Enemy script
+            Debug.Log("Golpeado enemigo: " + enemyCollider.name);
             EnemyScript enemy = enemyCollider.GetComponent<EnemyScript>();
             if (enemy != null)
             {
-                enemy.TakeDamage(1); // Deal damage
+                // enemy.TakeDamage(10);  // Se activar� cuando el otro programador implemente la funci�n
             }
-
-            Debug.Log("Hit enemy: " + enemyCollider.name);
         }
     }
 
     private void OnDrawGizmosSelected()
     {
-        if (attackPoint != null)
-        {
-            Gizmos.color = Color.red;
-            Gizmos.DrawWireSphere(attackPoint.position, attackRange);
-        }
+        if (attackPoint == null) return;
+
+        Gizmos.color = Color.red;
+        Vector2 attackPosition = (Vector2)attackPoint.position + lastMoveDirection * attackRange * 0.5f;
+
+        Gizmos.matrix = Matrix4x4.TRS(attackPosition, Quaternion.identity, Vector3.one);
+        Gizmos.DrawWireCube(Vector3.zero, new Vector3(attackRange, attackRange * 0.5f, 1f));
     }
 }
