@@ -54,7 +54,7 @@ public class PlayerMovement : MonoBehaviour
     {
         Vector2 attackPosition = (Vector2)attackPoint.position + lastMoveDirection * attackRange * 0.5f;
 
-        Collider2D[] hitEnemies = Physics2D.OverlapBoxAll(attackPosition, new Vector2(attackRange, attackRange * 0.5f), 0f, enemyLayers);
+        Collider2D[] hitEnemies = Physics2D.OverlapCapsuleAll(attackPosition, new Vector2(attackRange, attackRange * 0.5f), 0f, enemyLayers);
 
         foreach (Collider2D enemyCollider in hitEnemies)
         {
@@ -62,7 +62,7 @@ public class PlayerMovement : MonoBehaviour
             EnemyScript enemy = enemyCollider.GetComponent<EnemyScript>();
             if (enemy != null)
             {
-                // enemy.TakeDamage(10);  // Se activar� cuando el otro programador implemente la funci�n
+                enemy.TakeDamage(1);  // Se activar� cuando el otro programador implemente la funci�n
             }
         }
     }
