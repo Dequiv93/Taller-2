@@ -4,8 +4,7 @@ public class PlayerHealth : MonoBehaviour
 {
     [SerializeField] int playerHp;
     public int playermaxHp;
-    public bool reciveDamage = true;
-
+    
 
 
     private void start()
