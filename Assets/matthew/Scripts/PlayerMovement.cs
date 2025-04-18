@@ -8,23 +8,28 @@ public class PlayerMovement : MonoBehaviour
     private Vector2 moveInput;
     private PlayerStateMachine stateMachine;
 
+    private Animator animator;
     public float MoveSpeed => moveSpeed;
     public Vector2 MoveInput => moveInput;
 
     [SerializeField] private LayerMask enemyLayers;
     [SerializeField] private Transform attackPoint;
     [SerializeField] private float attackRange = 0.5f;
-    private Vector2 lastMoveDirection = Vector2.right; // �ltima direcci�n de ataque
+    private Vector2 lastMoveDirection = Vector2.right; // Última dirección de ataque
+
+    
 
     void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
         stateMachine = GetComponent<PlayerStateMachine>();
+        animator = GetComponent<Animator>(); // obtiene el componente animator
     }
 
     void Update()
     {
-        rb.linearVelocity = moveInput * moveSpeed;
+        rb.velocity = moveInput * moveSpeed;
+        UpdateAnimation(); // actualiza el animator con movimiento
     }
 
     public void Move(InputAction.CallbackContext context)
@@ -33,7 +38,17 @@ public class PlayerMovement : MonoBehaviour
 
         if (moveInput != Vector2.zero)
         {
-            lastMoveDirection = moveInput.normalized; // Guarda la �ltima direcci�n de movimiento
+            lastMoveDirection = moveInput;
+
+            // Corrige la dirección dominante para evitar diagonales raras
+            if (Mathf.Abs(moveInput.x) > Mathf.Abs(moveInput.y))
+            {
+                lastMoveDirection = new Vector2(Mathf.Sign(moveInput.x), 0);
+            }
+            else
+            {
+                lastMoveDirection = new Vector2(0, Mathf.Sign(moveInput.y));
+            }
         }
     }
 
@@ -76,5 +91,14 @@ public class PlayerMovement : MonoBehaviour
 
         Gizmos.matrix = Matrix4x4.TRS(attackPosition, Quaternion.identity, Vector3.one);
         Gizmos.DrawWireCube(Vector3.zero, new Vector3(attackRange, attackRange * 0.5f, 1f));
+    }
+
+    private void UpdateAnimation()
+    {
+        animator.SetFloat("moveX", moveInput.x);
+        animator.SetFloat("moveY", moveInput.y);
+        animator.SetFloat("lastMoveX", lastMoveDirection.x);
+        animator.SetFloat("lastMoveY", lastMoveDirection.y);
+        animator.SetBool("isMoving", moveInput.magnitude > 0.1f); // Usa un umbral para evitar jitter
     }
 }

@@ -1,13 +1,13 @@
 fileFormatVersion: 2
-guid: 05d84881f6214f24091e42e6a89f58c0
+guid: d8912b78cee2f7d498a5e10ecb31b463
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -858593100705052297
-    second: "Caballero Caminando Frente TAMA\xD1O ORIGINAL_0"
+      213: 8459052800070239362
+    second: Caballero Eliminado Derecha_0
   - first:
-      213: 360352596452193651
-    second: "Caballero Caminando Frente TAMA\xD1O ORIGINAL_1"
+      213: 8479672493319863763
+    second: Caballero Eliminado Derecha_1
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -40,7 +40,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 0
+    filterMode: 1
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -54,7 +54,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 400
+  spritePixelsToUnits: 100
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -78,7 +78,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 0
+    textureCompression: 1
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -103,13 +103,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: "Caballero Caminando Frente TAMA\xD1O ORIGINAL_0"
+      name: Caballero Eliminado Derecha_0
       rect:
         serializedVersion: 2
-        x: 645
-        y: 583
-        width: 1073
-        height: 1197
+        x: 157
+        y: 99
+        width: 101
+        height: 214
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -118,20 +118,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 779cfd9bf1aa514f0800000000000000
-      internalID: -858593100705052297
+      spriteID: 284c57424b7946570800000000000000
+      internalID: 8459052800070239362
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: "Caballero Caminando Frente TAMA\xD1O ORIGINAL_1"
+      name: Caballero Eliminado Derecha_1
       rect:
         serializedVersion: 2
-        x: 3007
-        y: 600
-        width: 1073
-        height: 1163
+        x: 570
+        y: 99
+        width: 101
+        height: 214
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -140,8 +140,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 3753c69f6ca300500800000000000000
-      internalID: 360352596452193651
+      spriteID: 3dd3bf79439dda570800000000000000
+      internalID: 8479672493319863763
       vertices: []
       indices: 
       edges: []
@@ -159,9 +159,7 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable:
-      "Caballero Caminando Frente TAMA\xD1O ORIGINAL_0": -858593100705052297
-      "Caballero Caminando Frente TAMA\xD1O ORIGINAL_1": 360352596452193651
+    nameFileIdTable: {}
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
