@@ -9,6 +9,7 @@ public class PlayerMovement : MonoBehaviour
     private PlayerStateMachine stateMachine;
 
     private Animator animator;
+    public Animator Animator => animator;
     public float MoveSpeed => moveSpeed;
     public Vector2 MoveInput => moveInput;
 
@@ -28,7 +29,7 @@ public class PlayerMovement : MonoBehaviour
 
     void Update()
     {
-        rb.velocity = moveInput * moveSpeed;
+        rb.linearVelocity = moveInput * moveSpeed;
         UpdateAnimation(); // actualiza el animator con movimiento
     }
 

@@ -10,9 +10,15 @@ public class AttackState : PlayerState
 
     public override void EnterState()
     {
-        attackTimer = attackDuration;// Reset the attack timer
-        player.SetVelocity(Vector2.zero);// Stop the player
-        player.TriggerAttack();// Trigger the attack animation
+        attackTimer = attackDuration; // Reset the attack timer
+
+        player.SetVelocity(Vector2.zero); // Stop the player
+
+        //  Activar la animación del ataque según la dirección
+        player.Animator.SetTrigger("attack");
+
+        //  Detectar colisiones o aplicar daño
+        player.TriggerAttack();
     }
 
     public override void UpdateState()
@@ -21,8 +27,8 @@ public class AttackState : PlayerState
 
         if (attackTimer <= 0)
         {
-            //return to idle or walking after atack
-            if(player.MoveInput.magnitude > 0)
+            // Volver al estado correspondiente
+            if (player.MoveInput.magnitude > 0.1f)
             {
                 stateMachine.ChangeState(stateMachine.WalkingState);
             }
@@ -32,7 +38,10 @@ public class AttackState : PlayerState
             }
         }
     }
-    public override void ExitState() 
-    { 
+
+    public override void ExitState()
+    {
+        // Puedes limpiar el trigger si es necesario:
+        // player.Animator.ResetTrigger("attack");
     }
 }
