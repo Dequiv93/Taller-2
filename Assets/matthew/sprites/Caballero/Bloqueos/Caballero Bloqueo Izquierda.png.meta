@@ -159,7 +159,9 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Caballero Bloqueo Izquierda_0: 5343761267298140358
+      Caballero Bloqueo Izquierda_1: 5185664979035007519
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

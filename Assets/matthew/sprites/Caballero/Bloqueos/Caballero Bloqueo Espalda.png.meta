@@ -159,7 +159,9 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Caballero Bloqueo Espalda_0: -7332085537119790984
+      Caballero Bloqueo Espalda_1: -3269611904148478967
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
