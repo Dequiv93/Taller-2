@@ -14,24 +14,21 @@ public class EnemyScript : MonoBehaviour
         player = GameObject.FindGameObjectWithTag("Player")?.transform;
     }
 
-    private void Update()
+    protected virtual void Update()
     {
-        if (player == null) return; // Ensure player exists
+        if (player == null) return;
 
         float distance = Vector2.Distance(transform.position, player.position);
-
-        if (distance > chasingDistance) return; // Stop if too far away
+        if (distance > chasingDistance) return;
 
         if (distance > stoppingDistance)
         {
-            // Move towards the player
             Vector3 direction = (player.position - transform.position).normalized;
             transform.position += direction * speed * Time.deltaTime;
         }
     }
 
-    // Function to receive damage
-    public void TakeDamage(int damage)
+    public virtual void TakeDamage(int damage)
     {
         health -= damage;
         Debug.Log(gameObject.name + " took " + damage + " damage! Health left: " + health);
