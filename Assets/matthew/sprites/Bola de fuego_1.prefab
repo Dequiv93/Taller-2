@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 7946599247442578984}
   - component: {fileID: 3861107122416075485}
   - component: {fileID: 1893700800617697145}
+  - component: {fileID: 2530021574813799304}
   m_Layer: 0
   m_Name: Bola de fuego_1
   m_TagString: Untagged
@@ -76,9 +77,9 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 1
+  m_SortingLayerID: -694169679
+  m_SortingLayer: 5
+  m_SortingOrder: 5
   m_Sprite: {fileID: -5500129625459953466, guid: 3b5b72c89fa005e4f8b100c248c3b10a, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -168,3 +169,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   shooter: {fileID: 0}
   speed: 2
+--- !u!114 &2530021574813799304
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9201752286029902412}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ac008c91b2b0ccf459b3fece5f060465, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerHealth: {fileID: 8406633820353638434, guid: 6f93fd7b546a5bc46a55fb231cce6c42, type: 3}
+  enemyDamage: 1

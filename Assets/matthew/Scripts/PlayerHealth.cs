@@ -1,9 +1,12 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
+
 
 public class PlayerHealth : MonoBehaviour
 {
     [SerializeField] private int playerHp;
     public int playerMaxHp = 5;
+    public int sceneBuildIndex;
 
     private void Start()
     {
@@ -25,5 +28,6 @@ public class PlayerHealth : MonoBehaviour
     {
         Debug.Log("El jugador ha muerto.");
         Destroy(gameObject);
+        SceneManager.LoadScene(sceneBuildIndex, LoadSceneMode.Single);
     }
 }

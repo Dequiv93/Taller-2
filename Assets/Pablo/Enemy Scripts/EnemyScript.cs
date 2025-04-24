@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class EnemyScript : MonoBehaviour
 {
@@ -6,7 +7,7 @@ public class EnemyScript : MonoBehaviour
     public float stoppingDistance = 1.5f; // Distance to stop following player
     public float chasingDistance = 5f; // Maximum chase range
     public int health = 20; // Enemy's health
-
+    public int sceneBuildIndex;
     public Transform player; // Reference to the player
 
     protected virtual void Start()
@@ -44,5 +45,7 @@ public class EnemyScript : MonoBehaviour
     {
         Debug.Log(gameObject.name + " has been defeated!");
         Destroy(gameObject);
+        SceneManager.LoadScene(sceneBuildIndex, LoadSceneMode.Single);
+
     }
 }

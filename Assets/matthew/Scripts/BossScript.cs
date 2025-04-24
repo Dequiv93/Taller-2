@@ -1,11 +1,14 @@
 using UnityEngine;
 
+
 public class BossScript : EnemyScript
 {
     [SerializeField] private FireballShooter fireballShooter;
     [SerializeField] private float shootInterval = 2f;
 
     private float shootTimer;
+
+    
 
     void Start()
     {
@@ -41,4 +44,6 @@ public class BossScript : EnemyScript
         base.TakeDamage(damage); // Reutiliza la lógica de EnemyScript
         // Puedes agregar efectos especiales del boss aquí si quieres
     }
+
+    
 }
