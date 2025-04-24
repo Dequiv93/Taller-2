@@ -2,33 +2,43 @@ using UnityEngine;
 
 public class BossScript : EnemyScript
 {
-    public float attackCooldown = 2f;
-    private float cooldownTimer;
+    [SerializeField] private FireballShooter fireballShooter;
+    [SerializeField] private float shootInterval = 2f;
+
+    private float shootTimer;
+
+    void Start()
+    {
+        base.Start(); // Inicializa lo del EnemyScript
+        shootTimer = shootInterval;
+    }
 
     void Update()
     {
-        base.Update(); // Lógica de seguimiento normal del EnemyScript
+        base.Update(); // Ejecuta la lógica de perseguir al jugador
 
-        cooldownTimer -= Time.deltaTime;
-
-        float distance = Vector2.Distance(transform.position, player.position);
-        if (distance <= stoppingDistance && cooldownTimer <= 0f)
+        shootTimer -= Time.deltaTime;
+        if (shootTimer <= 0f)
         {
-            Attack();
-            cooldownTimer = attackCooldown;
+            ShootFireball();
+            shootTimer = shootInterval;
         }
     }
 
-    void Attack()
+    void ShootFireball()
     {
-        Debug.Log("El jefe ataca al jugador!");
-        // Aquí podrías lanzar un proyectil, hacer daño en área, activar animaciones, etc.
+        if (fireballShooter != null)
+        {
+            // La dirección se puede ajustar según la posición del jugador
+            Vector2 dir = (player.position - transform.position).normalized;
+            fireballShooter.firePoint.right = dir; // Apunta hacia el jugador
+            fireballShooter.ShootFireball();
+        }
     }
 
-    public override void TakeDamage(int damage)
+    public new void TakeDamage(int damage)
     {
-        base.TakeDamage(damage);
-        // Aquí puedes añadir efectos extra del jefe, como:
-        Debug.Log("¡El jefe rugió al recibir daño!");
+        base.TakeDamage(damage); // Reutiliza la lógica de EnemyScript
+        // Puedes agregar efectos especiales del boss aquí si quieres
     }
 }

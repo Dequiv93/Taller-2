@@ -9,7 +9,7 @@ public class EnemyScript : MonoBehaviour
 
     public Transform player; // Reference to the player
 
-    private void Start()
+    protected virtual void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player")?.transform;
     }
