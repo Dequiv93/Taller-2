@@ -769,7 +769,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -1.8146, y: 314.3645}
+  m_AnchoredPosition: {x: -0.000024796, y: 351}
   m_SizeDelta: {x: 1256.084, y: 213.312}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1584599173
@@ -792,7 +792,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Twilight Dungeon
+  m_text: 'Minotaur: Dungeon Trails'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: a0670abb9f07e974ba3f20274a4a39a0, type: 2}
   m_sharedMaterial: {fileID: -5482483262533394168, guid: a0670abb9f07e974ba3f20274a4a39a0, type: 2}
