@@ -159,7 +159,9 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Minotauro Caminando de Frente_0: 2244338306634903752
+      Minotauro Caminando de Frente_1: -8759182877597375640
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

@@ -159,7 +159,9 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Minotauro Ataque Espalda_0: -6308301692344324485
+      Minotauro Ataque Espalda_1: 5436751787154117984
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

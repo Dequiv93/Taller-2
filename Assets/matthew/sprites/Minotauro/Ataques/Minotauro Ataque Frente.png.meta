@@ -159,7 +159,9 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Minotauro Ataque Frente_0: 8994305062629273367
+      Minotauro Ataque Frente_1: -6765120869797270751
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

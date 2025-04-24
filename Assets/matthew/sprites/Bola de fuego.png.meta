@@ -209,7 +209,11 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Bola de fuego_0: -6318207806636517017
+      Bola de fuego_1: -5500129625459953466
+      Bola de fuego_2: -7414912720521680615
+      Bola de fuego_3: 6241647580277860998
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

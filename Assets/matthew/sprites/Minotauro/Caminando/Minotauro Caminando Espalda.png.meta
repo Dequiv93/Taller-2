@@ -159,7 +159,9 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Minotauro Caminando Espalda_0: 5754040802064938246
+      Minotauro Caminando Espalda_1: -603836453560521524
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

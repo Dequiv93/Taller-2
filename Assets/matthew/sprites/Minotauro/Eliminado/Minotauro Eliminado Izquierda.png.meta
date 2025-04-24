@@ -159,7 +159,9 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Minotauro Eliminado Izquierda_0: -5494428243954830263
+      Minotauro Eliminado Izquierda_1: 4832691126405246745
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

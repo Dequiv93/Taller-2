@@ -17,12 +17,15 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Escenas Principales/Lose.unity
     guid: dd0172aa747697f46a91ebd0f68f03ff
-  - enabled: 1
-    path: Assets/Escenas Principales/Lvl1.unity
+  - enabled: 0
+    path: Assets/Escenas Principales/conlvl1.unity
     guid: 6ff5047f5dbe8c245abd02f96fab231e
-  - enabled: 1
+  - enabled: 0
     path: Assets/Escenas Principales/Lvl2.unity
     guid: 2a0d6e1ffc9e2fd468eb3ec19c5e25af
+  - enabled: 1
+    path: Assets/Escenas Principales/BossLvl.unity
+    guid: b4ba82b9db721524d8928087a9c5ca00
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
   m_UseUCBPForAssetBundles: 0
